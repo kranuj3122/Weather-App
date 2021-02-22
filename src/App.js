@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import React from "react";
+import CityInput from "./component/CityInput";
+import Wheather from "./component/Wheather";
 function App() {
+  let [city, setCity] = useState("");
+  const fetchWheatherData = () => {
+    fetch(
+      `http://api.openweathermap.org/data/2.5/wheather?q=${city}&appid=9870badd0d1e410370775699a332bd1c`
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("result is ", result);
+      })
+      .catch((err) => {
+        console.log("error has occured");
+      });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CityInput
+        city={city}
+        setCity={setCity}
+        fetchWheatherData={fetchWheatherData}
+      />
+      <Wheather />
+    </>
   );
 }
 
