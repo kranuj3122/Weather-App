@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 
-const CityInput = ({ city, setCity, fetchWheatherData }) => {
+const CityInput = ({ city, setCity, fetchWeatherData }) => {
   let [err, setErr] = useState("");
   const handleInputChange = (event) => {
     setCity(event.target.value);
@@ -11,7 +11,7 @@ const CityInput = ({ city, setCity, fetchWheatherData }) => {
       setErr("City field is empty");
     } else {
       setErr("");
-      fetchWheatherData();
+      fetchWeatherData();
     }
   };
   return (
